@@ -3,3 +3,12 @@
 *@
 @{
 }
+@Model 
+<h1>Wishlist</h1
+<a asp-action="create">Add Item</a>
+<ul>
+    @foreach (var item in Model)
+   {
+       <li>@item.Description<a uiactions="delete" asp-route-id="@item.Id">delete</a></li>
+   }
+</ul>
