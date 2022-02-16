@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WishList.Data;
+using WishList.Models;
 
 namespace WishList.Controllers
 {
@@ -20,10 +21,20 @@ namespace WishList.Controllers
         {
             return View();
         }
-        
-        public IActionResult Delete()
+
+        public IActionResult Create(Item item)
         {
-            return View();
+            _context.Items.Add(item);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        
+        public IActionResult Delete(int Id)
+        {
+            Item tmpItem  = _context.Items.Find(Id);
+            _context.Items.Remove(tmpItem);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
